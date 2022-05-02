@@ -34,3 +34,55 @@ function sortLocation(olat, olon){
     });
     console.log(locais);
 }
+
+function renderLocation(){
+
+    let display = document.querySelector(".lista-locais");
+    display.innerHTML = " ";
+
+    for (let i in locais) {
+        display.innerHTML += `<li>${locais[i]['Bairro']} - ${locais[i]['Endereco']}</li>` ;
+    }
+}
+
+function validaForm(form) {
+    let aux;
+
+    for (let i = 0; i < form.length; i++) {
+        aux = form[i].value;
+
+        if ( aux == "") {
+            alert("Todos os campos precisam ser preenchidos");
+            return false;
+        }
+    }
+
+    return true;
+
+  } 
+
+async function busca() {
+
+    let form = document.querySelector(".enderecoForm");
+
+    if (validaForm(form)){
+
+        let num = form["numero"].value;
+        let street = form["rua"].value;
+        let city = form["cidade"].value;
+    
+        let url = `http://nominatim.openstreetmap.org/search?street=${num} ${street}&city=${city}&format=json&polygon=1&limit=1&addressdetails=1`
+        url = encodeURI(url);
+    
+        let response = await fetch(url)
+        let data = await response.json();
+
+        if (data.length == 0){
+            alert("Local não localizado");
+        }else{
+            sortLocation(data[0]['lat'],data[0]['lon']);
+            renderLocation();
+        }
+    }
+
+}

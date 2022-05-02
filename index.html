@@ -8,16 +8,20 @@
 </head>
 <body>
 
-    <form>
+    <form class="enderecoForm"> 
+        <label>Rua</label>
         <input type="text" name="rua">
+        <label>numero</label>
         <input type="text" name="numero">
+        <label>Cidade</label>
         <input type="text" name="cidade">
-
-        <button type="button">Buscar</button> 
-
     </form>
 
-    <div></div>
+    <button type="button" onclick="busca()">Buscar</button> 
+
+    <div class="locais">
+        <ul class="lista-locais"></ul>
+    </div>
     
 </body>
 </html>
