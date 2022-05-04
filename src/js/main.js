@@ -15,17 +15,23 @@ async function getLocais() {
 
 function calcDist(lat1, lon1, lat2, lon2) {
 
-    let radlat1 = Math.PI * lat1 / 180;
-    let radlat2 = Math.PI * lat2 / 180;
-    let theta = lon1 - lon2;
-    let radtheta = Math.PI * theta / 180;
-    let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-    dist = Math.acos(dist);
-    dist = dist * 180 / Math.PI;
-    dist = dist * 60 * 1.1515;
-    dist = dist * 1.609344;
-  
-    return dist;
+    if ((lat1 == lat2) && (lon1 == lon2)) {
+		return 0;
+	}else{
+        let radlat1 = Math.PI * lat1 / 180;
+        let radlat2 = Math.PI * lat2 / 180;
+        let theta = lon1 - lon2;
+        let radtheta = Math.PI * theta / 180;
+        let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        dist = Math.acos(dist);
+        dist = dist * 180 / Math.PI;
+        dist = dist * 60 * 1.1515;
+        dist = dist * 1.609344;
+      
+        return dist;
+    }
+
+
 };
   
 function sortLocation(olat, olon){
@@ -37,11 +43,16 @@ function sortLocation(olat, olon){
 
 function renderLocation(){
 
-    let display = document.querySelector(".lista-locais");
+    let display = document.querySelector(".locais");
     display.innerHTML = " ";
 
     for (let i in locais) {
-        display.innerHTML += `<li>${locais[i]['Bairro']} - ${locais[i]['Endereco']}</li>` ;
+        display.innerHTML += `<li>
+        <div class="item-locais"> <p> <b>Endereço:</b>  ${locais[i]['Endereco']}, ${locais[i]['Numero']} - ${locais[i]['Bairro']} </p>
+        <p> <b>Estação:</b> ${locais[i]['Estacao']}</p>
+        <p> <b>Coordenadas:</b> ${locais[i]['lat']}, ${locais[i]['lon']}</p>
+        </div>
+        </li>` ;
     }
 }
 

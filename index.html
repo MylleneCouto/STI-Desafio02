@@ -4,24 +4,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="src/js/main.js"></script> 
+    <link rel="stylesheet" href="src/css/style.css">
     <title>Desafio - STI</title>
 </head>
 <body>
 
-    <form class="enderecoForm"> 
-        <label>Rua</label>
-        <input type="text" name="rua">
-        <label>numero</label>
-        <input type="text" name="numero">
-        <label>Cidade</label>
-        <input type="text" name="cidade">
-    </form>
+    <section class="container">
 
-    <button type="button" onclick="busca()">Buscar</button> 
+        <div class="tittle"><h1>Buscar BikeRio</h1></div>
 
-    <div class="locais">
-        <ul class="lista-locais"></ul>
-    </div>
+        <div class="form">
+            <form class="enderecoForm"> 
+                <input type="text" placeholder="Endereço" class="input-busca" name="rua">
+                <input type="text" placeholder="Número"  class="input-busca"  name="numero">
+                <input type="text" placeholder="Cidade" class="input-busca"  name="cidade">
+            </form>
+        
+            <button type="button" onclick="busca()">Buscar</button> 
+        </div>
+
     
+        <div class="lista-locais">
+            <ul class="locais"></ul>
+        </div>
+        
+
+
+    </section>
+
+
 </body>
 </html>
