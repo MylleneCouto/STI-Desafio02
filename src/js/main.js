@@ -38,7 +38,6 @@ function sortLocation(olat, olon){
     locais.sort(function(a, b) {
         return calcDist(olat, olon, a["lat"], a["lon"]) - calcDist(olat, olon, b["lat"], b["lon"]);
     });
-    console.log(locais);
 }
 
 function renderLocation(){
